@@ -878,6 +878,113 @@ html, body {
   .cli-row > div:nth-child(4) { display: none !important; }
 }
 
+/* ── CENTRO FINANCIERO NAV MOBILE ── */
+@media (max-width: 600px) {
+  #hon-nav-wrap { gap: 3px !important; padding: 3px !important; }
+  #hon-nav-wrap .hon-nav {
+    flex: 1 1 calc(33% - 6px) !important;
+    padding: 7px 4px !important;
+    font-size: 11px !important;
+    min-width: 0 !important;
+  }
+  #hon-nav-wrap .hon-nav i { 
+    display: block !important; 
+    margin: 0 auto 2px !important; 
+    font-size: 16px !important;
+  }
+}
+
+/* ── NEXUM CONNECT MOBILE ── */
+@media (max-width: 900px) {
+  /* Nav de Connect */
+  #panel-connect > div:first-child > div:first-child {
+    flex-wrap: wrap !important;
+    gap: 3px !important;
+  }
+  .con-nav {
+    flex: 1 1 calc(33% - 6px) !important;
+    padding: 7px 6px !important;
+    font-size: 11px !important;
+    text-align: center !important;
+  }
+  .con-nav i {
+    display: block !important;
+    margin: 0 auto 2px !important;
+    font-size: 15px !important;
+  }
+  /* Cards de stats en Connect */
+  #panel-connect [style*="grid-template-columns:1fr 1fr 1fr 1fr"],
+  #panel-connect [style*="grid-template-columns: 1fr 1fr 1fr 1fr"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* Tablero Connect — columnas → 1 */
+  #panel-connect [style*="grid-template-columns:1fr 1fr"],
+  #panel-connect [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Perfil Connect — card preview centrada */
+  #con-vista-miperfil > div {
+    flex-direction: column !important;
+  }
+  #con-vista-miperfil [style*="width:220px"] {
+    width: 100% !important;
+    margin-bottom: 16px !important;
+  }
+  /* Filtros de casos y profesionales */
+  #panel-connect select {
+    width: 100% !important;
+    margin-bottom: 8px !important;
+  }
+  /* Tabs de casos explorar/mios */
+  #con-casos-tabs {
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Connect: nav en 3+2 */
+  .con-nav {
+    flex: 1 1 calc(33% - 4px) !important;
+    font-size: 10.5px !important;
+    padding: 6px 4px !important;
+  }
+  /* Perfil Connect */
+  #con-vista-miperfil .card-body {
+    padding: 16px !important;
+  }
+  /* Stats Connect en 2x2 */
+  #panel-connect .kpi-row {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* ── GENERAL MOBILE FIXES ── */
+@media (max-width: 900px) {
+  /* Topbar más compacta */
+  .page-header { 
+    flex-direction: column !important; 
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+  /* Modales full width en mobile */
+  .modal {
+    max-width: 95vw !important;
+    margin: 8px !important;
+  }
+  /* Contenido con menos padding */
+  .content { padding: 16px !important; }
+  /* Formularios full width */
+  .form-input, .form-select { width: 100% !important; }
+  /* Botones de filtro — wrap */
+  .filter-bar { flex-wrap: wrap !important; gap: 6px !important; }
+  .filter-btn { font-size: 11.5px !important; padding: 5px 10px !important; }
+  /* Cards KPI en leads */
+  #panel-leads .kpi-grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1442,7 +1549,7 @@ html, body {
       <div class="panel" id="panel-honorarios">
 
   <!-- NAV INTERNO -->
-  <div style="display:flex;gap:4px;margin-bottom:20px;background:var(--surface2);border-radius:10px;padding:4px;">
+  <div id="hon-nav-wrap" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:20px;background:var(--surface2);border-radius:10px;padding:4px;">
     <button class="hon-nav active" onclick="honNav('dashboard',this)" style="flex:1;padding:8px 10px;border:none;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;background:var(--surface);color:var(--accent);box-shadow:0 1px 4px rgba(0,0,0,.08);font-family:var(--font);"><i class="ti ti-chart-bar" style="margin-right:4px;"></i>Dashboard</button>
     <button class="hon-nav" onclick="honNav('ingresos',this)" style="flex:1;padding:8px 10px;border:none;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;background:none;color:var(--text3);font-family:var(--font);"><i class="ti ti-coin" style="margin-right:4px;"></i>Ingresos</button>
     <button class="hon-nav" onclick="honNav('gastos',this)" style="flex:1;padding:8px 10px;border:none;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;background:none;color:var(--text3);font-family:var(--font);"><i class="ti ti-receipt" style="margin-right:4px;"></i>Gastos</button>
@@ -3679,7 +3786,9 @@ function goTo(id, el) {
   if (id === 'tareas')       cargarTareas();
   if (id === 'honorarios') {
     if (_planUsuario === 'gratis') { mostrarBloqueoPlan('honorarios'); return; }
-    cargarHonorarios();
+    setTimeout(function(){
+      honNav('dashboard', document.querySelector('#panel-honorarios .hon-nav'));
+    }, 50);
   }
   if (id === 'documentos')   cargarDocumentos();
   if (id === 'ia') {
@@ -3690,7 +3799,11 @@ function goTo(id, el) {
   if (id === 'agenda')       { renderCalendario(); cargarEventosCalendario(); }
   if (id === 'movimientos')  cargarMovimientos();
   if (id === 'leads')        cargarLeads();
-  if (id === 'connect')      conNav('tablero', document.querySelector('#panel-connect .con-nav'));
+  if (id === 'connect') {
+    setTimeout(function(){
+      conNav('tablero', document.querySelector('#panel-connect .con-nav'));
+    }, 50);
+  }
   if (id === 'notificaciones') cargarNotificaciones();
 }
 
