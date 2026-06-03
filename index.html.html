@@ -779,6 +779,105 @@ html, body {
   .cli-row > div:first-child { flex: 1; min-width: 0; }
   .cli-row > div:nth-child(5) { flex-shrink: 0; }
 }
+/* ── RESPONSIVE DASHBOARD NUEVO ── */
+@media (max-width: 900px) {
+  /* KPIs grandes — 3 columnas en desktop → 2 en mobile */
+  #panel-dashboard > div:nth-child(2) {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+  /* KPIs secundarios — 4 columnas → 2 columnas */
+  #panel-dashboard > div:nth-child(3) {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* Dos columnas → una columna */
+  #panel-dashboard > div:nth-child(4),
+  #panel-dashboard > div:nth-child(5) {
+    grid-template-columns: 1fr !important;
+  }
+  /* Saludo más compacto */
+  #dash-saludo { font-size: 18px !important; }
+  /* Botones acción rápida más pequeños */
+  #panel-dashboard .btn-new {
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* En pantalla muy chica — todos los KPIs en 2 columnas */
+  #panel-dashboard > div:nth-child(2) {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  #panel-dashboard > div:nth-child(2) > div {
+    padding: 12px 10px !important;
+  }
+  #panel-dashboard > div:nth-child(2) > div > div:first-child {
+    width: 36px !important; height: 36px !important;
+  }
+  #panel-dashboard > div:nth-child(2) [style*="font-size:28px"],
+  #panel-dashboard > div:nth-child(2) [style*="font-size: 28px"] {
+    font-size: 20px !important;
+  }
+  #panel-dashboard > div:nth-child(2) [style*="font-size:24px"],
+  #panel-dashboard > div:nth-child(2) [style*="font-size: 24px"] {
+    font-size: 18px !important;
+  }
+  /* Botones acción rápida — solo íconos */
+  #panel-dashboard .btn-new i { margin-right: 0 !important; }
+  #dash-saludo { font-size: 16px !important; }
+  #dash-fecha { font-size: 12px !important; }
+  /* Filas superiores en columna */
+  #panel-dashboard > div:first-child {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  #panel-dashboard > div:first-child > div:last-child {
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    gap: 6px;
+  }
+}
+
+/* ── RESPONSIVE GENERAL MEJORADO ── */
+@media (max-width: 900px) {
+  /* Grids de 3 columnas → 1 */
+  .card-body > div[style*="grid-template-columns:1fr 1fr 1fr"],
+  .card-body > div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Grids de 2 columnas → 1 */
+  .card-body > div[style*="grid-template-columns:1fr 1fr"],
+  .card-body > div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Planes en configuración — 1 columna */
+  #cfg-planes .card-body > div[style*="grid-template-columns:1fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  /* Tabla de leads — más compacta */
+  .lead-row-d, .lrd {
+    grid-template-columns: 1fr auto !important;
+    gap: 4px !important;
+  }
+  /* KPIs de leads — 3 columnas */
+  #panel-leads .dash-grid,
+  #panel-leads > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+  /* Ocultar columnas secundarias en tablas */
+  .col-hide-mobile { display: none !important; }
+  /* Honorarios tabla */
+  #tabla-honorarios > div { overflow-x: auto; }
+  /* Expedientes y clientes — cards en lugar de tabla */
+  .exp-row > div:nth-child(3),
+  .exp-row > div:nth-child(4),
+  .cli-row > div:nth-child(3),
+  .cli-row > div:nth-child(4) { display: none !important; }
+}
+
 </style>
 </head>
 <body>
