@@ -1347,10 +1347,7 @@ html, body {
           <div style="display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:12.5px;font-weight:600;color:var(--text3);">
             <i class="ti ti-folder-open" style="font-size:14px;"></i> Expediente
           </div>
-          <i class="ti ti-arrow-right" style="color:var(--border);font-size:14px;flex-shrink:0;"></i>
-          <div style="display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:12.5px;font-weight:600;color:var(--text3);">
-            <i class="ti ti-coin" style="font-size:14px;"></i> Honorarios
-          </div>
+          
         </div>
 
         <!-- KPIs -->
@@ -1395,7 +1392,8 @@ html, body {
 
         <!-- FILTROS -->
         <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center;">
-          <div style="display:flex;gap:4px;flex-wrap:wrap;">
+          <!-- Fila 1: filtros de estado -->
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;" id="leads-filtros">
             <button class="filter-btn active" onclick="filtrarLeads('todos',this)">Todos</button>
             <button class="filter-btn" onclick="filtrarLeads('nuevo',this)">Nuevos</button>
             <button class="filter-btn" onclick="filtrarLeads('contactado',this)">Contactados</button>
@@ -1404,11 +1402,18 @@ html, body {
             <button class="filter-btn" onclick="filtrarLeads('convertido',this)">Convertidos</button>
             <button class="filter-btn" onclick="filtrarLeads('perdido',this)">Perdidos</button>
           </div>
-          <div style="margin-left:auto;">
-            <select class="form-input" id="leads-filtro-fuente" style="width:auto;font-size:13px;" onchange="filtrarLeadsFuente()">
+          <!-- Fila 2: fuente -->
+          <div style="display:flex;align-items:center;gap:8px;">
+            <i class="ti ti-filter" style="font-size:14px;color:var(--text3);flex-shrink:0;"></i>
+            <select id="leads-filtro-fuente" onchange="filtrarLeadsFuente()" style="flex:1;max-width:200px;border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:13px;background:var(--surface);color:var(--text);font-family:var(--font);cursor:pointer;">
               <option value="">Todas las fuentes</option>
-              <option>Web</option><option>WhatsApp</option><option>Instagram</option>
-              <option>Facebook</option><option>Referido</option><option>Google</option><option>Otro</option>
+              <option value="web">Web</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="instagram">Instagram</option>
+              <option value="facebook">Facebook</option>
+              <option value="referido">Referido</option>
+              <option value="google">Google</option>
+              <option value="otro">Otro</option>
             </select>
           </div>
         </div>
