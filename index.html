@@ -359,6 +359,9 @@ html, body {
   width: 100%; max-width: 520px;
   box-shadow: 0 20px 60px rgba(0,0,0,.2);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
 }
 .modal-header {
   padding: 18px 20px;
@@ -372,7 +375,7 @@ html, body {
   cursor: pointer; display: flex; align-items: center; justify-content: center;
   color: var(--text3); font-size: 14px;
 }
-.modal-body { padding: 20px; }
+.modal-body { padding: 20px; overflow-y: auto; flex: 1; }
 .modal-footer {
   padding: 14px 20px;
   border-top: 1px solid var(--border);
@@ -1008,6 +1011,18 @@ html, body {
   #panel-connect [style*="linear-gradient(135deg,#4F46E5"] {
     padding: 14px 16px !important;
   }
+}
+
+/* ── MODAL MOBILE FIX ── */
+@media (max-width: 600px) {
+  .modal-overlay { padding: 12px; align-items: flex-end; }
+  .modal { 
+    border-radius: 16px 16px 0 0; 
+    max-height: 85vh;
+  }
+  .modal-body { padding: 16px; }
+  .modal-header { padding: 14px 16px; }
+  .modal-footer { padding: 12px 16px; }
 }
 
 </style>
@@ -6878,16 +6893,4 @@ function actualizarHonorario(id) {
   var btn=document.getElementById('btn-guardar-hon');if(btn){btn.disabled=true;btn.textContent='Guardando...';}
   sb.from('honorarios').update(datos).eq('id',id).then(function(r){
     if(btn){btn.disabled=false;btn.textContent='Guardar honorario';btn.onclick=function(){guardarHonorario();};}
-    var titulo=document.querySelector('#modal-honorario .modal-title');if(titulo)titulo.textContent='Nuevo honorario';
-    if(r.error){toast('Error: '+r.error.message,'error');return;}
-    closeModal('modal-honorario');toast('Honorario actualizado','success');cargarHonorarios();
-  });
-}
-
-// ── ARRANQUE ─────────────────────────────────────────────
-var loader = document.getElementById('screen-loading');
-if (loader) loader.style.display = 'flex';
-
-</script>
-</body>
-</html>
+    var titulo=document.querySelector('#modal-honorario .modal-title');if(titulo
