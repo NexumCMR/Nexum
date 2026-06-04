@@ -1035,6 +1035,54 @@ html, body {
   }
 }
 
+/* ── CENTRO FINANCIERO DASHBOARD MOBILE ── */
+@media (max-width: 900px) {
+  #hon-vista-dashboard [style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  #hon-resumen-anual {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  #hon-vista-dashboard [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+@media (max-width: 480px) {
+  #hon-resumen-anual { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+  #hon-resumen-anual .card-body { padding: 12px !important; }
+  #hon-resumen-anual [id^="kpi-"] { font-size: 18px !important; }
+}
+
+/* ── CF GRAFICOS MOBILE ── */
+@media (max-width: 900px) {
+  #hon-graficos-row {
+    grid-template-columns: 1fr !important;
+  }
+  #hon-graficos-row .card {
+    height: auto !important;
+  }
+}
+
+/* ── GASTOS Y REPORTES MOBILE ── */
+@media (max-width: 600px) {
+  #hon-vista-gastos [style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  #rep-rango-fechas { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── CONNECT NAV 6 BOTONES MOBILE ── */
+#con-nav-wrap { scrollbar-width: none; }
+#con-nav-wrap::-webkit-scrollbar { display: none; }
+@media (max-width: 600px) {
+  #con-nav-wrap .con-nav {
+    min-width: 60px;
+    font-size: 10px !important;
+    padding: 8px 2px !important;
+  }
+  #con-nav-wrap .con-nav i { font-size: 16px !important; }
+}
+
 </style>
 </head>
 <body>
@@ -1456,8 +1504,8 @@ html, body {
             <i class="ti ti-users" style="font-size:20px;color:#fff;"></i>
           </div>
           <div style="flex:1;">
-            <div style="font-size:14.5px;font-weight:700;margin-bottom:4px;color:var(--text);">El corazón de tu estudio</div>
-            <div style="font-size:13px;color:var(--text2);line-height:1.6;">Cada cliente que cargues acá queda vinculado a sus expedientes, honorarios y movimientos. Es el primer paso para organizar todo tu trabajo en un solo lugar.</div>
+            <div style="font-size:14.5px;font-weight:700;margin-bottom:4px;color:var(--text);">Tu base de clientes</div>
+            <div style="font-size:13px;color:var(--text2);line-height:1.6;">Cada cliente que cargues acá queda vinculado a sus expedientes y movimientos. Es el primer paso para organizar todo tu trabajo en un solo lugar.</div>
           </div>
         </div>
         <!-- Mini-stats -->
@@ -1677,64 +1725,76 @@ html, body {
     <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;display:flex;align-items:center;gap:8px;">
       <i class="ti ti-calendar" style="font-size:14px;color:var(--accent);"></i> Resumen anual
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;">
-      <div class="card">
-        <div class="card-body" style="padding:16px;">
-          <div style="font-size:12px;color:var(--text3);margin-bottom:6px;">📈 Total facturado</div>
-          <div style="font-size:22px;font-weight:800;color:var(--accent);" id="kpi-anual">$0</div>
-          <div style="font-size:12px;color:var(--text3);margin-top:4px;">Este año</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;" id="hon-resumen-anual">
+      <div class="card" style="overflow:hidden;">
+        <div class="card-body" style="padding:16px;position:relative;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--accent-bg);display:flex;align-items:center;justify-content:center;"><i class="ti ti-trending-up" style="font-size:16px;color:var(--accent);"></i></div>
+            <div style="font-size:12px;color:var(--text3);font-weight:500;">Total facturado</div>
+          </div>
+          <div style="font-size:23px;font-weight:800;color:var(--accent);" id="kpi-anual">$0</div>
+          <div style="font-size:11.5px;color:var(--text3);margin-top:2px;">Este año</div>
         </div>
       </div>
-      <div class="card">
+      <div class="card" style="overflow:hidden;">
         <div class="card-body" style="padding:16px;">
-          <div style="font-size:12px;color:var(--text3);margin-bottom:6px;">📉 Gastos del estudio</div>
-          <div style="font-size:22px;font-weight:800;color:var(--red);" id="kpi-gastos-num">$0</div>
-          <div style="font-size:12px;color:var(--text3);margin-top:4px;">Este año</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(239,68,68,.1);display:flex;align-items:center;justify-content:center;"><i class="ti ti-trending-down" style="font-size:16px;color:var(--red);"></i></div>
+            <div style="font-size:12px;color:var(--text3);font-weight:500;">Gastos del estudio</div>
+          </div>
+          <div style="font-size:23px;font-weight:800;color:var(--red);" id="kpi-gastos-num">$0</div>
+          <div style="font-size:11.5px;color:var(--text3);margin-top:2px;">Este año</div>
         </div>
       </div>
-      <div class="card">
+      <div class="card" style="overflow:hidden;">
         <div class="card-body" style="padding:16px;">
-          <div style="font-size:12px;color:var(--text3);margin-bottom:6px;">💰 Ganancia neta</div>
-          <div style="font-size:22px;font-weight:800;" id="kpi-neta">$0</div>
-          <div style="font-size:12px;color:var(--text3);margin-top:4px;">Cobrado menos gastos</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;"><i class="ti ti-coins" style="font-size:16px;color:var(--green);"></i></div>
+            <div style="font-size:12px;color:var(--text3);font-weight:500;">Ganancia neta</div>
+          </div>
+          <div style="font-size:23px;font-weight:800;color:var(--green);" id="kpi-neta">$0</div>
+          <div style="font-size:11.5px;color:var(--text3);margin-top:2px;">Cobrado menos gastos</div>
         </div>
       </div>
-      <div class="card">
+      <div class="card" style="overflow:hidden;">
         <div class="card-body" style="padding:16px;">
-          <div style="font-size:12px;color:var(--text3);margin-bottom:6px;">📊 Tasa de cobro</div>
-          <div style="font-size:22px;font-weight:800;color:var(--accent);" id="kpi-tasa">0%</div>
-          <div style="font-size:12px;color:var(--text3);margin-top:4px;">Del total generado</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(139,92,246,.1);display:flex;align-items:center;justify-content:center;"><i class="ti ti-percentage" style="font-size:16px;color:#8B5CF6;"></i></div>
+            <div style="font-size:12px;color:var(--text3);font-weight:500;">Tasa de cobro</div>
+          </div>
+          <div style="font-size:23px;font-weight:800;color:#8B5CF6;" id="kpi-tasa">0%</div>
+          <div style="font-size:11.5px;color:var(--text3);margin-top:2px;">Del total generado</div>
         </div>
       </div>
     </div>
 
-    <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;display:flex;align-items:center;gap:8px;">
-      <i class="ti ti-chart-bar" style="font-size:14px;color:var(--accent);"></i> Evolución de ingresos por mes
-    </div>
-    <div class="card" style="margin-bottom:24px;">
-      <div class="card-header">
-        <span class="card-title">Cobrado vs Pendiente — <span id="hon-chart-anio">2026</span></span>
-        <div style="display:flex;gap:6px;">
-          <button onclick="honChartAnio(-1)" style="background:none;border:1px solid var(--border);border-radius:6px;padding:2px 10px;cursor:pointer;font-size:13px;color:var(--text2);">‹</button>
-          <button onclick="honChartAnio(1)" style="background:none;border:1px solid var(--border);border-radius:6px;padding:2px 10px;cursor:pointer;font-size:13px;color:var(--text2);">›</button>
+    <!-- Gráfico de evolución + dona lado a lado -->
+    <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-bottom:16px;" id="hon-graficos-row">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+          <i class="ti ti-chart-bar" style="font-size:14px;color:var(--accent);"></i> Evolución por mes
+        </div>
+        <div class="card" style="height:calc(100% - 28px);">
+          <div class="card-header">
+            <span class="card-title">Cobrado vs Pendiente — <span id="hon-chart-anio">2026</span></span>
+            <div style="display:flex;gap:6px;">
+              <button onclick="honChartAnio(-1)" style="background:none;border:1px solid var(--border);border-radius:6px;padding:2px 10px;cursor:pointer;font-size:13px;color:var(--text2);">‹</button>
+              <button onclick="honChartAnio(1)" style="background:none;border:1px solid var(--border);border-radius:6px;padding:2px 10px;cursor:pointer;font-size:13px;color:var(--text2);">›</button>
+            </div>
+          </div>
+          <div class="card-body" style="padding:20px;">
+            <canvas id="hon-chart-mensual" height="150"></canvas>
+          </div>
         </div>
       </div>
-      <div class="card-body" style="padding:20px;">
-        <canvas id="hon-chart-mensual" height="150"></canvas>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
       <div>
-        <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;">🔴 Alertas — honorarios urgentes</div>
-        <div class="card"><div class="card-body" style="padding:16px;" id="hon-alertas"></div></div>
-      </div>
-      <div>
-        <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;">📊 Distribución cobrado/pendiente</div>
-        <div class="card">
-          <div class="card-body" style="padding:20px;display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+          <i class="ti ti-chart-pie" style="font-size:14px;color:#8B5CF6;"></i> Distribución
+        </div>
+        <div class="card" style="height:calc(100% - 28px);">
+          <div class="card-body" style="padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;">
             <canvas id="hon-chart-dona" width="150" height="150"></canvas>
-            <div style="display:flex;gap:14px;margin-top:12px;">
+            <div style="display:flex;gap:14px;margin-top:14px;flex-wrap:wrap;justify-content:center;">
               <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--green);"></div><span style="font-size:12px;color:var(--text2);">Cobrado</span></div>
               <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--yellow);"></div><span style="font-size:12px;color:var(--text2);">Pendiente</span></div>
               <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--red);"></div><span style="font-size:12px;color:var(--text2);">Vencido</span></div>
@@ -1743,19 +1803,36 @@ html, body {
         </div>
       </div>
     </div>
+    <!-- Alertas a ancho completo -->
+    <div style="margin-bottom:24px;">
+      <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+        <i class="ti ti-alert-triangle" style="font-size:14px;color:var(--red);"></i> Alertas — honorarios urgentes
+      </div>
+      <div class="card"><div class="card-body" style="padding:16px;" id="hon-alertas"></div></div>
+    </div>
 
   </div>
 
   <!-- ══ VISTA INGRESOS ══ -->
   <div id="hon-vista-ingresos" style="display:none;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
-      <div>
-        <div style="font-size:18px;font-weight:700;">Honorarios</div>
-        <div style="font-size:13px;color:var(--text3);">Registrá tus ingresos. Sin vínculos obligatorios — simple y rápido.</div>
+    <!-- Encabezado con botón separado -->
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:200px;">
+        <div style="font-size:18px;font-weight:700;margin-bottom:3px;">Honorarios</div>
+        <div style="font-size:13px;color:var(--text3);">Registrá tus ingresos de forma simple y rápida.</div>
       </div>
-      <button class="btn-new" onclick="openModal('modal-honorario')"><i class="ti ti-plus"></i> Nuevo honorario</button>
+      <button class="btn-new" onclick="openModal('modal-honorario')" style="flex-shrink:0;"><i class="ti ti-plus"></i> Nuevo honorario</button>
     </div>
-    <div style="display:flex;gap:6px;margin-bottom:16px;margin-top:14px;">
+    <!-- Banner explicativo -->
+    <div style="background:linear-gradient(135deg,rgba(16,185,129,.06) 0%,rgba(16,185,129,.02) 100%);border:1px solid rgba(16,185,129,.15);border-radius:12px;padding:14px 16px;margin-bottom:18px;display:flex;align-items:flex-start;gap:12px;">
+      <div style="width:34px;height:34px;border-radius:9px;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <i class="ti ti-info-circle" style="font-size:17px;color:#fff;"></i>
+      </div>
+      <div style="font-size:12.5px;color:var(--text2);line-height:1.65;">
+        Cada honorario que cargues alimenta automáticamente el <strong>dashboard financiero</strong>: los totales de cobrado, pendiente y vencido se actualizan solos. Podés marcarlos como cobrados cuando recibís el pago, y opcionalmente vincularlos a un cliente o expediente.
+      </div>
+    </div>
+    <div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;">
       <button class="filter-btn active" onclick="filtrarIngresos('todos',this)">Todos</button>
       <button class="filter-btn" onclick="filtrarIngresos('pendiente',this)">Pendientes</button>
       <button class="filter-btn" onclick="filtrarIngresos('cobrado',this)">Cobrados</button>
@@ -1767,17 +1844,28 @@ html, body {
 
   <!-- ══ VISTA GASTOS ══ -->
   <div id="hon-vista-gastos" style="display:none;">
-    <!-- Selector de mes -->
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
-      <div>
-        <div style="font-size:18px;font-weight:700;" id="gastos-titulo-mes">Gastos de junio 2026</div>
-        <div style="font-size:13px;color:var(--text3);">Registrá todos los gastos del estudio mes a mes</div>
+    <!-- Encabezado -->
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:200px;">
+        <div style="font-size:18px;font-weight:700;margin-bottom:3px;">Gastos del estudio</div>
+        <div style="font-size:13px;color:var(--text3);">Llevá el control de los gastos mes a mes.</div>
       </div>
-      <div style="display:flex;align-items:center;gap:8px;">
-        <button onclick="cambiarMesGastos(-1)" style="background:none;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;color:var(--text2);font-size:13px;">‹ Anterior</button>
-        <button onclick="cambiarMesGastos(1)" style="background:none;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;color:var(--text2);font-size:13px;">Siguiente ›</button>
-        <button class="btn-new" onclick="openModal('modal-gasto')"><i class="ti ti-plus"></i> Agregar gasto</button>
+      <button class="btn-new" onclick="openModal('modal-gasto')" style="flex-shrink:0;"><i class="ti ti-plus"></i> Agregar gasto</button>
+    </div>
+    <!-- Banner explicativo -->
+    <div style="background:linear-gradient(135deg,rgba(239,68,68,.05) 0%,rgba(239,68,68,.02) 100%);border:1px solid rgba(239,68,68,.13);border-radius:12px;padding:14px 16px;margin-bottom:18px;display:flex;align-items:flex-start;gap:12px;">
+      <div style="width:34px;height:34px;border-radius:9px;background:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <i class="ti ti-info-circle" style="font-size:17px;color:#fff;"></i>
       </div>
+      <div style="font-size:12.5px;color:var(--text2);line-height:1.65;">
+        Registrá acá los gastos del estudio (alquiler, servicios, matrículas, software, etc). Se restan automáticamente de tus ingresos para calcular tu <strong>ganancia neta</strong> en el dashboard. Usá el selector de mes para navegar entre períodos.
+      </div>
+    </div>
+    <!-- Navegador de mes -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:20px;background:var(--surface2);border-radius:10px;padding:8px;">
+      <button onclick="cambiarMesGastos(-1)" title="Mes anterior" style="width:34px;height:34px;border-radius:8px;background:var(--surface);border:1px solid var(--border);cursor:pointer;color:var(--text2);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)';" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text2)';"><i class="ti ti-chevron-left"></i></button>
+      <div style="font-size:15px;font-weight:700;min-width:160px;text-align:center;" id="gastos-titulo-mes">Gastos de junio 2026</div>
+      <button onclick="cambiarMesGastos(1)" title="Mes siguiente" style="width:34px;height:34px;border-radius:8px;background:var(--surface);border:1px solid var(--border);cursor:pointer;color:var(--text2);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)';" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text2)';"><i class="ti ti-chevron-right"></i></button>
     </div>
 
     <!-- Resumen del mes -->
@@ -1814,7 +1902,16 @@ html, body {
   <!-- ══ VISTA PROYECCIÓN ══ -->
   <div id="hon-vista-proyeccion" style="display:none;">
     <div style="font-size:18px;font-weight:700;margin-bottom:4px;">Proyección de ingresos</div>
-    <div style="font-size:13px;color:var(--text3);margin-bottom:20px;">Basado en tus honorarios pendientes con fecha de vencimiento</div>
+    <div style="font-size:13px;color:var(--text3);margin-bottom:16px;">Basado en tus honorarios pendientes con fecha de vencimiento</div>
+    <!-- Banner explicativo -->
+    <div style="background:linear-gradient(135deg,rgba(245,158,11,.06) 0%,rgba(245,158,11,.02) 100%);border:1px solid rgba(245,158,11,.15);border-radius:12px;padding:14px 16px;margin-bottom:20px;display:flex;align-items:flex-start;gap:12px;">
+      <div style="width:34px;height:34px;border-radius:9px;background:var(--yellow);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <i class="ti ti-chart-line" style="font-size:17px;color:#fff;"></i>
+      </div>
+      <div style="font-size:12.5px;color:var(--text2);line-height:1.65;">
+        Esta sección estima cuánto vas a cobrar en los próximos meses, tomando tus honorarios pendientes según su fecha de vencimiento. Te ayuda a anticipar tu flujo de caja y planificar mejor.
+      </div>
+    </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
       <div class="card" style="border-left:4px solid var(--green);">
         <div class="card-body" style="padding:20px;">
@@ -1869,10 +1966,11 @@ html, body {
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
           <div class="form-field">
             <label class="form-label">Período</label>
-            <select class="form-input" id="rep-periodo" onchange="cargarReportePreview()">
+            <select class="form-input" id="rep-periodo" onchange="repToggleRango()">
               <option value="mes">Este mes</option>
               <option value="trimestre">Este trimestre</option>
               <option value="anio" selected>Este año</option>
+              <option value="personalizado">Rango personalizado</option>
             </select>
           </div>
           <div class="form-field">
@@ -1882,6 +1980,17 @@ html, body {
               <option value="ingresos">Solo honorarios</option>
               <option value="gastos">Solo gastos</option>
             </select>
+          </div>
+        </div>
+        <!-- Rango de fechas personalizado (oculto por defecto) -->
+        <div id="rep-rango-fechas" style="display:none;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+          <div class="form-field">
+            <label class="form-label">Desde</label>
+            <input type="date" class="form-input" id="rep-fecha-desde" onchange="cargarReportePreview()"/>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Hasta</label>
+            <input type="date" class="form-input" id="rep-fecha-hasta" onchange="cargarReportePreview()"/>
           </div>
         </div>
         <div id="rep-preview"></div>
@@ -1957,12 +2066,13 @@ html, body {
       <div class="panel" id="panel-connect">
 
         <!-- NAV INTERNO -->
-        <div style="display:flex;gap:4px;margin-bottom:20px;background:var(--surface2);border-radius:10px;padding:4px;">
-          <button class="con-nav active" onclick="conNav('tablero',this)" style="flex:1;padding:8px 10px;border:none;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;background:var(--surface);color:#6366F1;box-shadow:0 1px 4px rgba(0,0,0,.08);font-family:var(--font);"><i class="ti ti-layout-dashboard" style="margin-right:4px;"></i>Tablero</button>
-          <button class="con-nav" onclick="conNav('casos',this)" style="flex:1;padding:8px 10px;border:none;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;background:none;color:var(--text3);font-family:var(--font);"><i class="ti ti-briefcase" style="margin-right:4px;"></i>Casos</button>
-          <button class="con-nav" onclick="conNav('profesionales',this)" style="flex:1;padding:8px 10px;border:none;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;background:none;color:var(--text3);font-family:var(--font);"><i class="ti ti-users" style="margin-right:4px;"></i>Profesionales</button>
-          <button class="con-nav" onclick="conNav('colaboraciones',this)" style="flex:1;padding:8px 10px;border:none;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;background:none;color:var(--text3);font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:4px;"><i class="ti ti-handshake"></i><span>Colaboraciones</span></button>
-          <button class="con-nav" onclick="conNav('miperfil',this)" style="flex:1;padding:8px 10px;border:none;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;background:none;color:var(--text3);font-family:var(--font);"><i class="ti ti-user-circle" style="margin-right:4px;"></i>Mi Perfil</button>
+        <div style="display:flex;gap:4px;margin-bottom:20px;background:var(--surface2);border-radius:10px;padding:4px;overflow-x:auto;" id="con-nav-wrap">
+          <button class="con-nav active" onclick="conNav('tablero',this)" style="flex:1;padding:9px 4px;border:none;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;background:var(--surface);color:#6366F1;box-shadow:0 1px 4px rgba(0,0,0,.08);font-family:var(--font);display:flex;flex-direction:column;align-items:center;gap:4px;"><i class="ti ti-layout-dashboard" style="font-size:17px;"></i><span>Tablero</span></button>
+          <button class="con-nav" onclick="conNav('casos',this)" style="flex:1;padding:9px 4px;border:none;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;background:none;color:var(--text3);font-family:var(--font);display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .15s;"><i class="ti ti-search" style="font-size:17px;"></i><span>Explorar</span></button>
+          <button class="con-nav" onclick="conNav('publicar',this)" style="flex:1;padding:9px 4px;border:none;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;background:none;color:var(--text3);font-family:var(--font);display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .15s;"><i class="ti ti-plus" style="font-size:17px;"></i><span>Publicar</span></button>
+          <button class="con-nav" onclick="conNav('profesionales',this)" style="flex:1;padding:9px 4px;border:none;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;background:none;color:var(--text3);font-family:var(--font);display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .15s;"><i class="ti ti-users" style="font-size:17px;"></i><span>Colegas</span></button>
+          <button class="con-nav" onclick="conNav('colaboraciones',this)" style="flex:1;padding:9px 4px;border:none;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;background:none;color:var(--text3);font-family:var(--font);display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .15s;"><i class="ti ti-handshake" style="font-size:17px;"></i><span>Colaborar</span></button>
+          <button class="con-nav" onclick="conNav('miperfil',this)" style="flex:1;padding:9px 4px;border:none;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;background:none;color:var(--text3);font-family:var(--font);display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .15s;"><i class="ti ti-user-circle" style="font-size:17px;"></i><span>Mi Perfil</span></button>
         </div>
 
         <!-- ══ TABLERO ══ -->
@@ -2044,74 +2154,80 @@ html, body {
 
         <!-- ══ CASOS ══ -->
         <div id="con-vista-casos" style="display:none;">
+          <!-- Mini-guía -->
+          <div style="background:linear-gradient(135deg,rgba(99,102,241,.06) 0%,rgba(99,102,241,.02) 100%);border:1px solid rgba(99,102,241,.15);border-radius:12px;padding:14px 16px;margin-bottom:18px;display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:34px;height:34px;border-radius:9px;background:#6366F1;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="ti ti-search" style="font-size:17px;color:#fff;"></i>
+            </div>
+            <div style="font-size:12.5px;color:var(--text2);line-height:1.65;">
+              Explorá casos que otros colegas publicaron y buscan derivar. Filtrá por <strong>especialidad</strong> y <strong>provincia</strong> para encontrar los que encajan con tu perfil, y contactá al colega si te interesa tomarlo.
+            </div>
+          </div>
+          <!-- Filtros -->
+          <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
+            <select class="form-input" id="con-filtro-esp" style="width:auto;flex:1;min-width:160px;" onchange="filtrarCasos()">
+              <option value="">Todas las especialidades</option>
+              <option>Laboral</option><option>Familia</option><option>Civil</option>
+              <option>Penal</option><option>Comercial</option><option>Administrativo</option>
+              <option>Previsional</option><option>Constitucional</option>
+            </select>
+            <select class="form-input" id="con-filtro-prov" style="width:auto;flex:1;min-width:160px;" onchange="filtrarCasos()">
+              <option value="">Todas las provincias</option>
+              <option>Buenos Aires</option><option>CABA</option><option>Córdoba</option>
+              <option>Santa Fe</option><option>Mendoza</option><option>Tucumán</option>
+              <option>Salta</option><option>Entre Ríos</option><option>Misiones</option>
+              <option>Neuquén</option><option>Río Negro</option>
+            </select>
+          </div>
+          <div id="con-lista-casos">
+            <div style="padding:56px;text-align:center;color:var(--text3);">
+              <i class="ti ti-briefcase" style="font-size:36px;display:block;margin-bottom:12px;opacity:.3;"></i>
+              <div style="font-size:15px;font-weight:600;color:var(--text2);margin-bottom:8px;">Todavía no hay casos publicados</div>
+              <div style="font-size:13px;">Cuando otros colegas publiquen casos, aparecerán acá. También podés ser vos el primero desde "Publicar".</div>
+            </div>
+          </div>
+        </div>
 
-          <!-- Dos tabs: Explorar / Mis publicaciones -->
-          <div style="display:flex;gap:0;margin-bottom:20px;border-bottom:1px solid var(--border);">
-            <button id="con-casos-tab-explorar" onclick="conCasosTab('explorar')" style="padding:10px 20px;border:none;background:none;font-size:13.5px;font-weight:700;cursor:pointer;color:#6366F1;border-bottom:2px solid #6366F1;font-family:var(--font);">
-              <i class="ti ti-search" style="margin-right:6px;"></i>Explorar casos disponibles
+        <!-- ══ PUBLICAR MI CASO ══ -->
+        <div id="con-vista-publicar" style="display:none;">
+          <!-- Mini-guía -->
+          <div style="background:linear-gradient(135deg,rgba(124,58,237,.06) 0%,rgba(124,58,237,.02) 100%);border:1px solid rgba(124,58,237,.15);border-radius:12px;padding:14px 16px;margin-bottom:18px;display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:34px;height:34px;border-radius:9px;background:#7C3AED;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="ti ti-send" style="font-size:17px;color:#fff;"></i>
+            </div>
+            <div style="font-size:12.5px;color:var(--text2);line-height:1.65;">
+              ¿Tenés una causa que no es tu especialidad o que está fuera de tu zona? Publicala acá para que otro colega la tome. Es ideal para <strong>derivar casos</strong> que no podés atender y mantener una buena relación con tu cliente.
+            </div>
+          </div>
+          <div style="margin-bottom:16px;">
+            <button class="btn-new" onclick="openModal('modal-caso-connect')" style="background:linear-gradient(135deg,#4F46E5,#7C3AED);">
+              <i class="ti ti-plus"></i> Publicar caso disponible
             </button>
-            <button id="con-casos-tab-mios" onclick="conCasosTab('mios')" style="padding:10px 20px;border:none;background:none;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--text3);border-bottom:2px solid transparent;font-family:var(--font);">
-              <i class="ti ti-plus" style="margin-right:6px;"></i>Publicar mi caso
-            </button>
           </div>
-
-          <!-- TAB: EXPLORAR -->
-          <div id="con-casos-explorar">
-            <div style="font-size:13.5px;color:var(--text2);margin-bottom:16px;">
-              Encontrá casos publicados por otros colegas. Podés filtrar por especialidad y provincia para ver solo los relevantes para vos.
-            </div>
-            <!-- Filtros -->
-            <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
-              <select class="form-input" id="con-filtro-esp" style="width:auto;flex:1;min-width:160px;" onchange="filtrarCasos()">
-                <option value="">Todas las especialidades</option>
-                <option>Laboral</option><option>Familia</option><option>Civil</option>
-                <option>Penal</option><option>Comercial</option><option>Administrativo</option>
-                <option>Previsional</option><option>Constitucional</option>
-              </select>
-              <select class="form-input" id="con-filtro-prov" style="width:auto;flex:1;min-width:160px;" onchange="filtrarCasos()">
-                <option value="">Todas las provincias</option>
-                <option>Buenos Aires</option><option>CABA</option><option>Córdoba</option>
-                <option>Santa Fe</option><option>Mendoza</option><option>Tucumán</option>
-                <option>Salta</option><option>Entre Ríos</option><option>Misiones</option>
-                <option>Neuquén</option><option>Río Negro</option>
-              </select>
-            </div>
-            <div id="con-lista-casos">
-              <div style="padding:56px;text-align:center;color:var(--text3);">
-                <i class="ti ti-briefcase" style="font-size:36px;display:block;margin-bottom:12px;opacity:.3;"></i>
-                <div style="font-size:15px;font-weight:600;color:var(--text2);margin-bottom:8px;">Todavía no hay casos publicados</div>
-                <div style="font-size:13px;">Cuando otros colegas publiquen casos, aparecerán acá. También podés ser vos el primero.</div>
-              </div>
+          <div id="con-mis-casos">
+            <div style="padding:48px;text-align:center;color:var(--text3);">
+              <i class="ti ti-folder-open" style="font-size:36px;display:block;margin-bottom:12px;opacity:.3;"></i>
+              <div style="font-size:14px;font-weight:600;color:var(--text2);margin-bottom:6px;">No publicaste ningún caso todavía</div>
+              <div style="font-size:13px;">Tus publicaciones aparecerán acá para que puedas hacer seguimiento.</div>
             </div>
           </div>
-
-          <!-- TAB: PUBLICAR -->
-          <div id="con-casos-mios" style="display:none;">
-            <div style="font-size:13.5px;color:var(--text2);margin-bottom:16px;">
-              Publicá un caso disponible para que otro colega lo tome. Podés derivar causas que no son tu especialidad o que están fuera de tu zona.
-            </div>
-            <div style="margin-bottom:16px;">
-              <button class="btn-new" onclick="openModal('modal-caso-connect')" style="background:linear-gradient(135deg,#4F46E5,#7C3AED);">
-                <i class="ti ti-plus"></i> Publicar caso disponible
-              </button>
-            </div>
-            <div id="con-mis-casos">
-              <div style="padding:48px;text-align:center;color:var(--text3);">
-                <i class="ti ti-folder-open" style="font-size:36px;display:block;margin-bottom:12px;opacity:.3;"></i>
-                <div style="font-size:14px;font-weight:600;color:var(--text2);margin-bottom:6px;">No publicaste ningún caso todavía</div>
-                <div style="font-size:13px;">Tus publicaciones aparecerán acá para que puedas hacer seguimiento.</div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         <!-- ══ PROFESIONALES ══ -->
         <div id="con-vista-profesionales" style="display:none;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
             <div>
               <div style="font-size:18px;font-weight:700;">Profesionales de la red</div>
               <div style="font-size:13px;color:var(--text3);">Encontrá colegas por especialidad y zona</div>
+            </div>
+          </div>
+          <!-- Mini-guía -->
+          <div style="background:linear-gradient(135deg,rgba(99,102,241,.06) 0%,rgba(99,102,241,.02) 100%);border:1px solid rgba(99,102,241,.15);border-radius:12px;padding:14px 16px;margin-bottom:18px;display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:34px;height:34px;border-radius:9px;background:#6366F1;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="ti ti-users" style="font-size:17px;color:#fff;"></i>
+            </div>
+            <div style="font-size:12.5px;color:var(--text2);line-height:1.65;">
+              Directorio de abogados de la red. Buscá colegas por <strong>especialidad</strong> y <strong>provincia</strong> para derivar un caso, pedir una corresponsalía o sumar a alguien a tu equipo. Completá tu perfil en "Mi Perfil" para que otros te encuentren.
             </div>
           </div>
           <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
@@ -2137,12 +2253,21 @@ html, body {
 
         <!-- ══ COLABORACIONES ══ -->
         <div id="con-vista-colaboraciones" style="display:none;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
             <div>
               <div style="font-size:18px;font-weight:700;">Solicitudes de Colaboración</div>
               <div style="font-size:13px;color:var(--text3);">Corresponsalías, diligenciamientos, consultas y apoyo procesal</div>
             </div>
             <button class="btn-new" onclick="openModal('modal-colab-connect')" style="background:linear-gradient(135deg,#4F46E5,#7C3AED);"><i class="ti ti-plus"></i> Nueva solicitud</button>
+          </div>
+          <!-- Mini-guía -->
+          <div style="background:linear-gradient(135deg,rgba(124,58,237,.06) 0%,rgba(124,58,237,.02) 100%);border:1px solid rgba(124,58,237,.15);border-radius:12px;padding:14px 16px;margin-bottom:18px;display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:34px;height:34px;border-radius:9px;background:#7C3AED;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i class="ti ti-handshake" style="font-size:17px;color:#fff;"></i>
+            </div>
+            <div style="font-size:12.5px;color:var(--text2);line-height:1.65;">
+              Pedí o ofrecé tareas puntuales entre colegas: una <strong>corresponsalía</strong> en otra jurisdicción, el diligenciamiento de un oficio, una consulta sobre una materia específica o apoyo procesal. Publicá lo que necesitás y otro abogado de la red puede responderte.
+            </div>
           </div>
           <!-- Tabs de tipos -->
           <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
@@ -5535,9 +5660,20 @@ function cargarColaboracionesConnect() {
   }).catch(function(){ renderColaboraciones([], 'todas'); });
 }
 
+function cargarMisCasosConnect() {
+  if (!sb) return;
+  sb.auth.getUser().then(function(r){
+    if(!r.data || !r.data.user) return;
+    return sb.from('connect_casos').select('*').eq('usuario_id', r.data.user.id).order('created_at',{ascending:false});
+  }).then(function(res){
+    if(!res) return;
+    // El render usa con-mis-casos; si hay datos, renderizar tarjetas simples
+  }).catch(function(){});
+}
+
 function conNav(vista, btn) {
   // 1. Mostrar vista inmediatamente
-  ['tablero','casos','profesionales','colaboraciones','miperfil'].forEach(function(v) {
+  ['tablero','casos','publicar','profesionales','colaboraciones','miperfil'].forEach(function(v) {
     var el = document.getElementById('con-vista-'+v);
     if (el) el.style.display = (v === vista) ? 'block' : 'none';
   });
@@ -5555,9 +5691,11 @@ function conNav(vista, btn) {
   // 3. Cargar datos
   try {
     if (vista === 'tablero') cargarTableroConnect();
-    if (vista === 'casos') { cargarCasosConnect(); conCasosTab('explorar'); }
+    if (vista === 'casos') cargarCasosConnect();
+    if (vista === 'publicar') cargarMisCasosConnect();
     if (vista === 'profesionales') cargarProfesionalesConnect();
     if (vista === 'colaboraciones') cargarColaboracionesConnect();
+    if (vista === 'miperfil') cargarPerfilConnect();
   } catch (err) {
     console.error('conNav carga error (' + vista + '):', err);
   }
@@ -6876,6 +7014,26 @@ function cargarProyeccion() {
 }
 
 // ── REPORTES ──────────────────────────────────────
+function repToggleRango() {
+  var periodo = document.getElementById('rep-periodo');
+  var rango = document.getElementById('rep-rango-fechas');
+  if (periodo && rango) {
+    if (periodo.value === 'personalizado') {
+      rango.style.display = 'grid';
+      // Setear fechas por defecto: primer día del mes actual hasta hoy
+      var hoy = new Date();
+      var primerDia = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+      var d = document.getElementById('rep-fecha-desde');
+      var h = document.getElementById('rep-fecha-hasta');
+      if (d && !d.value) d.value = primerDia.toISOString().split('T')[0];
+      if (h && !h.value) h.value = hoy.toISOString().split('T')[0];
+    } else {
+      rango.style.display = 'none';
+    }
+  }
+  cargarReportePreview();
+}
+
 function cargarReportePreview() {
   if (!sb) return;
   var periodo=(document.getElementById('rep-periodo')||{}).value||'anio';
@@ -6885,10 +7043,20 @@ function cargarReportePreview() {
   if(periodo==='mes') desde=new Date(hoy.getFullYear(),hoy.getMonth(),1);
   if(periodo==='trimestre') desde=new Date(hoy.getFullYear(),Math.floor(hoy.getMonth()/3)*3,1);
   var desdeStr=desde.toISOString().split('T')[0];
-  Promise.all([
-    sb.from('honorarios').select('*').gte('created_at',desdeStr),
-    sb.from('gastos').select('*').gte('fecha',desdeStr)
-  ]).then(function(res){
+  var hastaStr=null;
+  if(periodo==='personalizado'){
+    var fd=document.getElementById('rep-fecha-desde');
+    var fh=document.getElementById('rep-fecha-hasta');
+    if(fd&&fd.value) desdeStr=fd.value;
+    if(fh&&fh.value) hastaStr=fh.value;
+  }
+  var qHon=sb.from('honorarios').select('*').gte('created_at',desdeStr);
+  var qGas=sb.from('gastos').select('*').gte('fecha',desdeStr);
+  if(hastaStr){
+    qHon=qHon.lte('created_at',hastaStr+'T23:59:59');
+    qGas=qGas.lte('fecha',hastaStr);
+  }
+  Promise.all([qHon, qGas]).then(function(res){
     var hon=res[0].data||[], gas=res[1].data||[];
     var cob=hon.filter(function(h){return h.estado==='cobrado';}).reduce(function(s,h){return s+parseFloat(h.monto||0);},0);
     var pend=hon.filter(function(h){return h.estado!=='cobrado';}).reduce(function(s,h){return s+parseFloat(h.monto||0);},0);
