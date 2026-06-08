@@ -628,6 +628,8 @@ function App() {
                 <h1>{titles[tab][0]}</h1>
                 <div className="sub">{titles[tab][1]}</div>
               </div>
+              <div style={{ flex: 1 }} />
+              <span style={{ background: "#137a3e", color: "#fff", fontWeight: 800, fontSize: 13, padding: "5px 12px", borderRadius: 20, whiteSpace: "nowrap" }}>✓ Versión 2</span>
             </div>
             <div className="content" key={tab}>
               {tab === "dashboard" && <Dashboard data={data} update={update} go={setTab} />}
